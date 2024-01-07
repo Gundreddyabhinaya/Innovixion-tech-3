@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #quiz-container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+    <title>Simple Quiz Application</title>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h2>General Knowledge Quiz</h2>
+
+    <form id="quiz-form" onsubmit="return false;">
+        <div class="question">
+            <label for="q1">1. What is the capital of France?</label><br>
+            <input type="radio" name="q1" value="paris"> Paris
+            <input type="radio" name="q1" value="london"> London
+            <input type="radio" name="q1" value="berlin"> Berlin
+        </div>
+
+        <div class="question">
+            <label for="q2">2. Which planet is known as the Red Planet?</label><br>
+            <input type="radio" name="q2" value="earth"> Earth
+            <input type="radio" name="q2" value="mars"> Mars
+            <input type="radio" name="q2" value="venus"> Venus
+        </div>
+
+        <div class="question">
+            <label for="q3">3. What is the largest mammal on Earth?</label><br>
+            <input type="radio" name="q3" value="elephant"> Elephant
+            <input type="radio" name="q3" value="whale"> Blue Whale
+            <input type="radio" name="q3" value="giraffe"> Giraffe
+        </div>
+
+        <button onclick="submitQuiz()">Submit</button>
+    </form>
+
+    <div id="quiz-result" class="result"></div>
+</div>
+
+<script>
+    function submitQuiz() {
+        // Retrieve user answers
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        const q2 = document.querySelector('input[name="q2"]:checked');
+        const q3 = document.querySelector('input[name="q3"]:checked');
+
+        // Check if all questions are answered
+        if (!q1 || !q2 || !q3) {
+            alert("Please answer all questions.");
+            return;
+        }
+
+        // Calculate score
+        let score = 0;
+        if (q1.value === "paris") score++;
+        if (q2.value === "mars") score++;
+        if (q3.value === "whale") score++;
+
+        // Display result
+        const resultContainer = document.getElementById("quiz-result");
+        resultContainer.innerHTML = `Your score is ${score} out of 3.`;
+    }
+</script>
+
+</body>
+</html>
